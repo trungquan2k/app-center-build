@@ -2,7 +2,7 @@ name: Deploy App on AppCenter
 on:
   push:
     branches:
-      - main
+      - develop
       - 'releases/**'
 jobs:
   setup-flutter:
