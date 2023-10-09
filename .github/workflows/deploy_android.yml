@@ -20,7 +20,7 @@ jobs:
     name: Build .apk file
     runs-on: self-hosted
     steps:
-      - run: flutter build apk --release --verbose
+      - run: fvm flutter build apk --release --verbose
   Deploy:
     name: Deploy file to AppCenter
     needs: [build]
@@ -29,5 +29,5 @@ jobs:
       - name: AppCenter CLI Action
         uses: charliealbright/appcenter-cli-action@v1.0.1
         with:
-          token: ${{secrets.APPCENTER_API_TOKEN}}
+          token: '13e182590e4ebeab61ea3893736d00d5da91d7c9'
           command: 'appcenter distribute release -f ${{inputs.file}} --app ${{inputs.name}} --group ${{inputs.group}}'
