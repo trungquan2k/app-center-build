@@ -18,7 +18,7 @@ jobs:
         with:
           channel: master
           architecture: x64
-      - run: fvm flutter pub get
+      - run: flutter pub get
   setup-appcenter-cli: # must have node and npm installed!
       name: Setup AppCenter CLI
       runs-on: self-hosted
