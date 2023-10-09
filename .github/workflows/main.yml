@@ -1,0 +1,42 @@
+name: Deploy App on AppCenter
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+jobs:
+  setup-flutter:
+    name: Setup Flutter
+    runs-on: self-hosted
+    steps:
+      - run: echo "🎉 Triggered by a ${{ github.event_name }} on ${{ github.ref }}"
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Install jq
+        uses: dcarbone/install-jq-action@v2.0.2
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: master
+          architecture: x64
+      - run: flutter pub get
+  setup-appcenter-cli: # must have node and npm installed!
+      name: Setup AppCenter CLI
+      runs-on: self-hosted
+      steps:
+      - name: Install appcenter-cli
+        uses: charliealbright/appcenter-cli-action@v1.0.1
+        with:
+          token: '${{secrets.APPCENTER_API_TOKEN}}'
+          command: 'appcenter help'
+  # deploy_iOS:
+  #   name: Deploy iOS
+  #   needs: [setup-flutter, setup-appcenter-cli]
+  #   uses: ./.github/workflows/deploy_ios.yml
+  deploy_android:
+    name: Deploy Android
+    needs: [setup-flutter, setup-appcenter-cli]
+    uses: ./.github/workflows/deploy_android.yml
+    secrets: inherit
+    with:
+      file: './build/app/outputs/apk/release/app-release.apk'
+      name: 'AlvaroBarrosC/GithubAction-Android'

@@ -1,0 +1,16 @@
+name: Deploy iOS App on AppCenter
+on: workflow_call
+jobs:
+  Build:
+    runs-on: self-hosted
+    steps:
+      - run: flutter build ipa --release --verbose --no-codesign
+  # Deploy:
+  #   needs: Build
+  #   runs-on: self-hosted
+  #   steps:
+  #     - name: AppCenter CLI Action
+  #       uses: charliealbright/appcenter-cli-action@v1.0.1
+  #       with:
+  #         token: '${{secrets.APPCENTER_API_TOKEN}}'
+  #         command: 'appcenter apps show'

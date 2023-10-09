@@ -1,0 +1,33 @@
+name: Deploy Android App on AppCenter
+on: 
+  workflow_call:
+    inputs:
+      file:
+        description: 'The path to the file to be released'
+        required: true
+        type: string
+      name:
+        description: 'Core App'
+        required: true
+        type: string
+      group:
+        description: 'The group that will have access to the version released'
+        required: false
+        type: string
+        default: '"Collaborators"'
+jobs:
+  build:
+    name: Build .apk file
+    runs-on: self-hosted
+    steps:
+      - run: flutter build apk --release --verbose
+  Deploy:
+    name: Deploy file to AppCenter
+    needs: [build]
+    runs-on: self-hosted
+    steps:
+      - name: AppCenter CLI Action
+        uses: charliealbright/appcenter-cli-action@v1.0.1
+        with:
+          token: ${{secrets.APPCENTER_API_TOKEN}}
+          command: 'appcenter distribute release -f ${{inputs.file}} --app ${{inputs.name}} --group ${{inputs.group}}'
