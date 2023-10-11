@@ -3,7 +3,7 @@ on:
   workflow_call:
     inputs:
       file:
-        description: './build/app/outputs/apk/release/app-release.apk'
+        description: 'the path of the files'
         required: true
         type: string
       name:
@@ -29,5 +29,5 @@ jobs:
       - name: AppCenter CLI Action
         uses: charliealbright/appcenter-cli-action@v1.0.1
         with:
-          token: '13e182590e4ebeab61ea3893736d00d5da91d7c9'
+          token: ${{secrets.APPCENTER_AUTODEPLOYMENT}}
           command: 'appcenter distribute release -f ${{inputs.file}} --app ${{inputs.name}} --group ${{inputs.group}}'

@@ -26,7 +26,7 @@ jobs:
       - name: Install appcenter-cli
         uses: charliealbright/appcenter-cli-action@v1.0.1
         with:
-          token: '13e182590e4ebeab61ea3893736d00d5da91d7c9'
+          token: ${{secrets.APPCENTER_AUTODEPLOYMENT}}
           command: 'appcenter help'
   # deploy_iOS:
   #   name: Deploy iOS
