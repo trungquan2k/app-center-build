@@ -3,7 +3,7 @@ on:
   workflow_call:
     inputs:
       file:
-        description: './build/app/outputs/apk/release/app-release.apk'
+        description: './build/app/outputs/flutter-apk/app-release.apk'
         required: true
         type: string
       name:
