@@ -7,7 +7,7 @@ on:
         required: true
         type: string
       name:
-        description: 'Core App'
+        description: 'CoreApp'
         required: true
         type: string
       group:
