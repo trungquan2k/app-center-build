@@ -39,4 +39,4 @@ jobs:
     secrets: inherit
     with:
       file: './build/app/outputs/flutter-apk/app-release.apk'
-      name: 'qhoang/CoreApp'
+      name: 'qhoang/Core-App'
