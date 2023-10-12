@@ -3,11 +3,11 @@ on:
   workflow_call:
     inputs:
       file:
-        description: 'the path of the files'
+        description: './build/app/outputs/apk/release/app-release.apk'
         required: true
         type: string
       name:
-        description: 'CoreApp'
+        description: 'qhoang_CoreApp'
         required: true
         type: string
       group:
