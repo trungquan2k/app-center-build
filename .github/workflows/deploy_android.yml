@@ -20,7 +20,7 @@ jobs:
     name: Build .apk file
     runs-on: self-hosted
     steps:
-      - run: flutter build apk --release --verbose
+      - run: fvm flutter build apk --release --verbose
   Deploy:
     name: Deploy file to AppCenter
     needs: [build]
