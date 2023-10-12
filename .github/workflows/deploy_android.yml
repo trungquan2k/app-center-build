@@ -7,7 +7,7 @@ on:
         required: true
         type: string
       name:
-        description: 'qhoang_CoreApp'
+        description: 'qhoang/CoreApp'
         required: true
         type: string
       group:
